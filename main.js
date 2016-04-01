@@ -88,3 +88,27 @@ console.log(parseRomanNumerals("DCXXII") + " (DCXXII = 622)");
 console.log(parseRomanNumerals("CMIX") + " (CMIX = 909)");
 console.log(parseRomanNumerals("MCIV") + " (MCIV = 1104)");
 console.log(parseRomanNumerals("MMMCCCXXXIII") + " (MMMCCCXXXIII = 3333)");
+
+var romanNumerals = {
+  I: 1,
+  V: 5,
+  X: 10,
+  L: 50,
+  C: 100,
+  D: 500,
+  M: 1000
+};
+
+function recur(incoming){
+  var current = romanNumerals[incoming[0]];
+  var next = romanNumerals[incoming[1]];
+  if (incoming.length == 1){
+     return current;
+  } else {
+    var multiplier = (next > current) ? -1 : 1;
+    return  recur(incoming.slice(1))+(current * multiplier);
+  }
+}
+
+console.log(recur("CMXCIX"));
+console.log(recur("XIX"));
